@@ -6,7 +6,7 @@ p2Actions = "";
 //create a readstream instead of this \/\/\/ so we can read at runtime
 (async () => {
     for await (const output of stream) {
-        console.log(output);
+        //console.log(output);
         parsedOutput = output.split('|');
         switch (parsedOutput[1]) {
             case 'request':
@@ -18,7 +18,7 @@ p2Actions = "";
                 }
                 break;
             default:
-                console.log('unknown or unrecorded sim-protocol')
+                //console.log('unknown or unrecorded sim-protocol')
                 break;
         }
     }
@@ -27,6 +27,15 @@ p2Actions = "";
 stream.write('>start {"formatid":"gen9randomdoublesbattle"}');
 stream.write('>player p1 {"name":"Celica"}');
 stream.write('>player p2 {"name":"Alm"}');
+
+//this log is from the battle itself, we can use it to read what is happening
+console.log(stream.battle.log);
+console.log(stream.battle.inputLog);
+console.log(stream.battle.messageLog);
+
+function ReadFromStream(result) {
+    console.log(result);
+};
 
 //Player 1
 
